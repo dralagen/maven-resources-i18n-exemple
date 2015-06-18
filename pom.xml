@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+
+  <groupId>fr.dralagen</groupId>
+  <artifactId>testfilter</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/filtered</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>**/*.txt</include>
+        </includes>
+      </resource>
+    </resources>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.7</version>
+        <executions>
+          <execution>
+            <id>translateEN</id>
+            <goals>
+              <goal>resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.basedir}/target/filtered/en</outputDirectory>
+              <useBuildFilters>false</useBuildFilters>
+              <filters>
+                <filter>src/main/resources/en.properties</filter>
+              </filters>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>translateFR</id>
+            <goals>
+              <goal>resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.basedir}/target/filtered/fr</outputDirectory>
+              <useBuildFilters>false</useBuildFilters>
+              <filters>
+                <filter>src/main/resources/fr.properties</filter>
+              </filters>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
