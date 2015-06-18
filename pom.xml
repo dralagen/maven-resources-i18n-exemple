@@ -13,6 +13,64 @@
   <artifactId>testfilter</artifactId>
   <version>1.0-SNAPSHOT</version>
 
+  <profiles>
+    <profile>
+      <id>translateFR</id>
+      <build>
+        <plugins>
+          <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>2.7</version>
+          <executions>
+            <execution>
+              <id>translateFR</id>
+              <goals>
+                <goal>resources</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>${project.basedir}/target/filtered/fr</outputDirectory>
+                <useBuildFilters>false</useBuildFilters>
+                <filters>
+                  <filter>src/main/resources/fr.properties</filter>
+                </filters>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>translateEN</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>2.7</version>
+            <executions>
+              <execution>
+                <id>translateEN</id>
+                <goals>
+                  <goal>resources</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>${project.basedir}/target/filtered/en</outputDirectory>
+                  <useBuildFilters>false</useBuildFilters>
+                  <filters>
+                    <filter>src/main/resources/en.properties</filter>
+                  </filters>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
   <build>
     <resources>
       <resource>
@@ -23,42 +81,5 @@
         </includes>
       </resource>
     </resources>
-
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-resources-plugin</artifactId>
-        <version>2.7</version>
-        <executions>
-          <execution>
-            <id>translateEN</id>
-            <goals>
-              <goal>resources</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>${project.basedir}/target/filtered/en</outputDirectory>
-              <useBuildFilters>false</useBuildFilters>
-              <filters>
-                <filter>src/main/resources/en.properties</filter>
-              </filters>
-            </configuration>
-          </execution>
-
-          <execution>
-            <id>translateFR</id>
-            <goals>
-              <goal>resources</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>${project.basedir}/target/filtered/fr</outputDirectory>
-              <useBuildFilters>false</useBuildFilters>
-              <filters>
-                <filter>src/main/resources/fr.properties</filter>
-              </filters>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
   </build>
 </project>
